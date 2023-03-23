@@ -205,7 +205,7 @@ export const App = () => {
           <p>選択項目</p>
           <input
             type="text"
-            value={selectItem}
+            value={selectItem.name}
             required
           />
         </div>
