@@ -1,13 +1,218 @@
+html{box-sizing:border-box;-webkit-text-size-adjust:100%}*,:after,:before{background-repeat:no-repeat;box-sizing:inherit}:after,:before{text-decoration:inherit;vertical-align:inherit}*{padding:0;margin:0;box-sizing:border-box;}audio:not([controls]){display:none;height:0}hr{overflow:visible}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}summary{display:list-item}small{font-size:80%}[hidden],template{display:none}abbr[title]{border-bottom:1px dotted;text-decoration:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}code,kbd,pre,samp{font-family:monospace,monospace}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}input{border-radius:0}[role=button],[type=button],[type=reset],[type=submit],button{cursor:pointer}[disabled]{cursor:default}[type=number]{width:auto}[type=search][type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}textarea{overflow:auto;resize:vertical}button,input,optgroup,select,textarea{font:inherit}optgroup{font-weight:700}button{overflow:visible}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:0;padding:0}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button:-moz-focusring{outline:1px dotted}[type=reset],[type=submit],button,html [type=button]button,select{text-transform:none}button,input,select,textarea{background-color:transparent;border-style:none;color:inherit}select::-ms-expand{display:none}select::-ms-value{color:currentColor}legend{border:0;color:inherit;display:table;max-width:100%;white-space:normal}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}[type=search]img{border-style:none;vertical-align: bottom}progress{vertical-align:baseline}svg:not(:root){overflow:hidden}audio,canvas,progress,video{display:inline-block}@media screen{[hidden~=screen]{display:inherit}[hidden~=screen]:not(:active):not(:focus):not(:target){position:absolute!important;clip:rect(0 0 0 0)!important}}[aria-busy=true]{cursor:progress}[aria-controls]{cursor:pointer}[aria-disabled]{cursor:default}::-moz-selection{background-color:#b3d4fc;color:#000;text-shadow:none}::selection{background-color:#b3d4fc;color:#000;text-shadow:none}ul,ol{list-style:none;}a{text-decoration:none;}img{max-width: 100%;}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  text-align: center;
+  background-color: #dcdcdc;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.headerTitle {
+  width: 100%;
+  background-color: #fff;
+}
+h1 {
+  font-size: 28px;
+  padding: 15px 0;
+}
+.headerTitle > button {
+  width: 50%;
+  padding: 10px 20px;
+  font-size: 22px;
+  border: 1px solid #bfbfbf;
+  color: #acabab;
+  background-color: #dcdcdc;
+  transition: 0.2s;
+}
+.headerTitle > button:nth-of-type(2) {
+  border-left: none;
+}
+.headerTitle > button:hover {
+  background-color: #d0b8ae;
+}
+.headerTitle > button.IsActive {
+  background-color: #eda184;
+  color: #fff;
+  font-weight: bold;
+}
+.earn,
+.payment {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #bfbfbf;
+}
+
+.earn > button,
+.payment > button {
+  width: calc(100% / 4);
+  padding: 25px;
+  height: 70px;
+  line-height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 1px solid #bfbfbf;
+  transition: 0.2s;
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.earn > button:hover {
+  background-color: #b0daee;
+}
+.earn > button.IsActive {
+  background-color: #6eb7db;
+  color: #fff;
+}
+.payment > button:hover {
+  background-color: #f4c2d3;
+}
+.payment > button.IsActive {
+  background-color: #df81a2;
+  color: #fff;
+}
+form {
+  background-color: #fff;
+  display: flex;
+}
+.formWrapper {
+  width: 70%;
+}
+.formWrapper > div {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #bfbfbf;
+  height: 60px;
+}
+.formWrapper > div > p {
+  width: 50%;
+  font-size: 22px;
+}
+.formWrapper > div > input {
+  width: 50%;
+  height: 100%;
+  font-size: 22px;
+  text-align: center;
+}
+.formWrapper > div > input:hover {
+  border: 3px solid;
+}
+.date > input {
+  padding: 10px 60px;
+}
+.money > input,
+.memorandum > input {
+  padding: 10px 30px;
+}
+.submitButton {
+  display: block;
+  width: 30%;
+  font-size: 28px;
+  color: #fff;
+  background-color: #eda184;
+  transition: 0.2s;
+}
+.submitButton:hover {
+  opacity: 0.7;
+}
+.moneyList {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+}
+.moneyList > dt {
+  width: 50%;
+  padding-right: 50px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  text-align: right;
+}
+.moneyList > dd {
+  width: 50%;
+  padding-left: 30px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  text-align: left;
+}
+.moneyList > dd:nth-of-type(1) {
+  color: #6eb7db;
+}
+.moneyList > dd:nth-of-type(2) {
+  color: #df81a2;
+}
+.earnList {
+  background-color: #fff;
+  border: 1px solid #bfbfbf;
+  border-bottom: none;
+}
+.earnList > h2 {
+  font-size: 24px;
+  padding: 10px 0;
+  letter-spacing: 1.5px;
+  background-color: #6eb7db;
+  color: #fff;
+  border-bottom: 1px solid #bfbfbf;
+}
+.paymentList > h2 {
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  padding: 10px 0;
+  background-color: #df81a2;
+  color: #fff;
+  border-bottom: 1px solid #bfbfbf;
+}
+.paymentList {
+  background-color: #fff;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  border: solid 1px #bfbfbf;
+  border-top: none;
+}
+th {
+  padding: 10px 0;
+}
+th {
+  width: 20%;
+  font-size: 20px;
+}
+th:nth-of-type(1),
+td:nth-of-type(1) {
+  border-left: none;
+}
+th:nth-of-type(5),
+td:nth-of-type(5) {
+  width: 15%;
+  border-right: none;
+}
+th:nth-of-type(5) {
+  background-color: #dcdcdc;
+}
+td > button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+.earnList td > button {
+  background-color: #6eb7db;
+  color: #fff;
+}
+.earnList td > button:hover {
+  opacity: 0.7;
+}
+.paymentList td > button {
+  background-color: #df81a2;
+  color: #fff;
+}
+.paymentList td > button:hover {
+  opacity: 0.7;
 }

@@ -2,9 +2,13 @@ import "./style.css";
 import { useState, useEffect } from "react";
 
 export const App = () => {
+  const date = new Date();
+  const yyyy = date.getFullYear();
+  const mm = ("0" + (date.getMonth() + 1)).slice(-2);
+  const dd = ("0" + date.getDate()).slice(-2);
   const [currentTab, setCurrentTab] = useState("tabIncome");
   const [selectItem, setSelectItem] = useState(["給料"]);
-  const [selectDate, setSelectDate] = useState("");
+  const [selectDate, setSelectDate] = useState(yyyy + "-" + mm + "-" + dd);
   const [inputAmount, setInputAmount] = useState("");
   const [incomeAmount, setIncomeAmount] = useState(0);
   const [expenseAmount, setExpenseAmount] = useState(0);
@@ -13,7 +17,28 @@ export const App = () => {
   const [expTransactions, setExpTransactions] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const incomeItem = ["給料", "おこづかい", "賞与", "副業", "投資", "臨時収入"];
+  const incomeItemImage = [
+    "/img/salary.svg",
+    "/img/pocket.svg",
+    "/img/bonus.svg",
+    "/img/subjob.svg",
+    "/img/investment.svg",
+    "/img/extra.svg"
+  ];
   const expenseItem = ["食費","日用品","衣服","美容","交際費","医療費","教育費","光熱費","交通費","通信費","家賃"];
+  const expenseItemImage = [
+    "/img/food.svg",
+    "/img/daily.svg",
+    "/img/clothes.svg",
+    "/img/beauty.svg",
+    "/img/entertainment.svg",
+    "/img/medic.svg",
+    "/img/education.svg",
+    "/img/utility.svg",
+    "/img/transport.svg",
+    "/img/communication.svg",
+    "/img/rent.svg"
+  ];
 
   const switchIncomeTab = () => {
     setCurrentTab("tabIncome");
@@ -80,12 +105,14 @@ export const App = () => {
         <div className="headerTitle">
           <h1>家計簿アプリ</h1>
           <button
+            className={currentTab === "tabIncome" ? "IsActive" : ""}
             type="button"
             onClick={switchIncomeTab}
           >
             収入
           </button>
           <button
+            className={currentTab === "tabExpense" ? "IsActive" : ""}
             type="button"
             onClick={switchExpenseTab}
           >
@@ -98,7 +125,9 @@ export const App = () => {
               <button
                 key={index}
                 type="button"
-                onClick={() => displayItem(item)}
+                className={selectItem[0] === item ? "IsActive" : ""}
+                style={{backgroundImage: `url(${incomeItemImage[index]})`}}
+                onClick={() => displayItem([item])}
               >
                 {item}
               </button>
@@ -110,7 +139,9 @@ export const App = () => {
               <button
                 key={index}
                 type="button"
-                onClick={() => displayItem(item)}
+                className={selectItem[0] === item ? "IsActive" : ""}
+                style={{backgroundImage: `url(${expenseItemImage[index]})`}}
+                onClick={() => displayItem([item])}
               >
                 {item}
               </button>
@@ -118,43 +149,38 @@ export const App = () => {
           </div>
         )}
         <form>
-          <input
-            className="date"
-            type="date"
-            value={selectDate}
-            onChange={(e) => {
-              setSelectDate(e.target.value);
-            }}
-          />
-          <div className="content">
-            <p>選択項目</p>
+          <div className="formWrapper">
+            <div className="date">
+            <p>日付</p>
             <input
-              type="text"
-              value={selectItem}
-              onChange={() => {}}
-              required
-            />
-          </div>
-          <div className="money">
-            <p>金額</p>
-            <input
-              type="number"
-              value={inputAmount}
-              min="0"
-              onChange={(e) => setInputAmount(e.target.value)}
-              required
-            />
-          </div>
-          <div className="memorandum">
-            <p>メモ</p>
-            <input
-              type="text"
-              value={inputMemo}
-              placeholder="例) 誕生日プレゼント代"
+              type="date"
+              value={selectDate}
               onChange={(e) => {
-                setInputMemo(e.target.value);
+                setSelectDate(e.target.value);
               }}
             />
+            </div>
+            <div className="money">
+              <p>金額</p>
+              <input
+                type="number"
+                value={inputAmount}
+                min="0"
+                onChange={(e) => setInputAmount(e.target.value)}
+                required
+              />
+            </div>
+            <div className="memorandum">
+              <p>メモ</p>
+              <input
+                type="text"
+                value={inputMemo}
+                placeholder="例) 誕生日プレゼント代"
+                onChange={(e) => {
+                  setInputMemo(e.target.value);
+                }}
+              />
+            </div>
           </div>
           <input
             className="submitButton"
@@ -163,6 +189,14 @@ export const App = () => {
             onClick={addTransaction}
           />
         </form>
+        <dl className="moneyList">
+          <dt>収支計</dt>
+          <dd>{totalAmount}円</dd>
+          <dt>収入合計</dt>
+          <dd>{incomeAmount}円</dd>
+          <dt>支出合計</dt>
+          <dd>{expenseAmount}円</dd>
+        </dl>
         <div className="listSection">
           <div className="earnList">
             <h2>収入記録</h2>
@@ -173,12 +207,13 @@ export const App = () => {
                   <th>項目</th>
                   <th>金額</th>
                   <th>メモ</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {incTransactions.map((transaction) => (
                   <tr key={transaction.id}>
-                    <td>{transaction.date}</td>
+                    <td>{transaction.date.slice(5)}</td>
                     <td>{transaction.name}</td>
                     <td>{transaction.amount}</td>
                     <td>{transaction.memo}</td>
@@ -209,7 +244,7 @@ export const App = () => {
               <tbody>
                 {expTransactions.map((transaction) => (
                   <tr key={transaction.id}>
-                    <td>{transaction.date}</td>
+                    <td>{transaction.date.slice(5)}</td>
                     <td>{transaction.name}</td>
                     <td>{transaction.amount}</td>
                     <td>{transaction.memo}</td>
@@ -227,14 +262,6 @@ export const App = () => {
             </table>
           </div>
         </div>
-        <dl className="moneyList">
-          <dt>収支計</dt>
-          <dd>{totalAmount}円</dd>
-          <dt>収入合計</dt>
-          <dd>{incomeAmount}円</dd>
-          <dt>支出合計</dt>
-          <dd>{expenseAmount}円</dd>
-        </dl>
       </div>
     </>
   );
