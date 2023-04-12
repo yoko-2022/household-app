@@ -159,6 +159,10 @@ export const App = () => {
                 setSelectDate(e.target.value);
               }}
             />
+            <input
+              type="hidden"
+              value={selectItem}
+            />
             </div>
             <div className="money">
               <p>金額</p>
@@ -207,7 +211,6 @@ export const App = () => {
                   <th>項目</th>
                   <th>金額</th>
                   <th>メモ</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
